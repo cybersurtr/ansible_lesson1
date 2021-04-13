@@ -1,5 +1,7 @@
 192.168.30.91
 192.168.30.92
+192.168.30.201
+192.168.30.202
 
 [all:vars]
 ansible_become_password=password
