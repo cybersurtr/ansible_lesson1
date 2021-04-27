@@ -9,15 +9,12 @@
       update_cache: yes
     when: ansible_distribution in ["Debian", "Ubuntu", "Pop!_OS"]
 
-  - name: install apache2 packages
+  - name: install apache2 & PHP packages for Ubuntu flavours
     apt:
-      name: apache2
-    when: ansible_distribution in ["Debian", "Ubuntu", "Pop!_OS"]
-
-
-  - name: add php support for apache
-    apt:
-      name: libapache2-mod-php
+      name:
+        - apache2
+        - libapache2-mod-php
+      state: latest
     when: ansible_distribution in ["Debian", "Ubuntu", "Pop!_OS"]
 
   - name: update repository index for Fedora
@@ -25,12 +22,10 @@
       update_cache: yes
     when: ansible_distribution == "Fedora"
 
-  - name: install httpd package
+  - name: install httpd & php packages for Fedora/CentOS
     dnf:
-      name: httpd
-    when: ansible_distribution == "Fedora"
-
-  - name: add php support for httpd
-    dnf:
-      name: php
+      name:
+        - httpd
+        - php
+      state: latest
     when: ansible_distribution == "Fedora"
